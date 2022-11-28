@@ -33,6 +33,10 @@
     </script>
   </head>
   <body>
+    <!--[if lt IE 7]>
+          <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
     <header class="fixed w-full flex flex-col items-center justify-center pt-4 bg-gradient-to-b from-black to-gray-700 font-marhey text-white md:pt-12">
       <h1 class="font-marhey font-bold text-center py-4 text-base sm:text-3xl md:text-4xl lg:text-5xl">Game Night/ Family Home Evening</h1>
       <h2 class="font-semibold text-sm text-yellow-200 md:text-3xl">All Singles 31+ Invited</h2>
@@ -40,6 +44,7 @@
         <a href="#about" class="smooth-scroll text-xs sm:text-sm md:text-lg  hover:text-yellow-200">About</a>
         <a href="#upcoming" class="smooth-scroll text-xs sm:text-sm md:text-lg  hover:text-yellow-200">Next Event</a>
         <a href="#map" class="smooth-scroll text-xs sm:text-sm md:text-lg  hover:text-yellow-200">Map</a>
+        <a href="#contact" class="smooth-scroll text-xs sm:text-sm md:text-lg  hover:text-yellow-200">Contact</a>
         <a href="#past-events" class="smooth-scroll text-xs sm:text-sm md:text-lg  hover:text-yellow-200">Past Events</a>
       </nav>
     </header>
@@ -75,10 +80,9 @@
         <div class="w-full mx-auto max-w-6xl shadow rounded">
           <img src="./static/images/fhe-game-night-dec-2022.png" alt="Game Night/Family Home Evening for Singles 31+ Dec 2022" class="rounded" />
         </div>
-
       </section>
 
-      <section id="map" class="overflow-x-auto flex flex-col items-center justify-center pt-24">
+      <section id="map" class="overflow-x-auto flex flex-col items-center justify-center py-24">
         <h3 class="font-bold text-3xl text-center py-8 text-green-600">Map</h3>
         <div class="md:hidden">
           <!-- MOBILE MAP -->
@@ -98,31 +102,76 @@
         </div>
       </section>
 
-      <div class="w-full bg-gray-100 mt-24 pb-24 px-4">
-      <section id="past-events" class="flex flex-col items-center justify-center container mx-auto space-y-16">
-        <h3 class="font-bold text-3xl text-center py-8 text-orange-600">Past Events</h3>
-        <img src="./static/images/FHEGame-Night-nov-2022.png" alt="Game Night/Family Home Evening for Singles 31+ Nov 2022" />
-        <img src="./static/images/oct-2022-game-night.png" alt="Game Night/Family Home Evening for Singles 31+ Oct 2022" />
-        <img src="./static/images/sept-game-night.png" alt="Game Night/Family Home Evening for Singles 31+ Sept 2022" />
-        <img src="./static/images/FHE-Game-Night-VI-Aug-2022.png" alt="Game Night/Family Home Evening for Singles 31+ Aug 2022" />
-        <img src="./static/images/game-night-july-2022.png" alt="Game Night/Family Home Evening for Singles 31+ July 2022" />
-        <img src="./static/images/Game-Night-june-2022.png"
-      alt="Game Night/Family Home Evening for Singles 31+ Jun 2022" />
-        <div class="flex flex-col items-center justify-center">
-        <img src="./static/images/game-night-may-2022.png" alt="Game Night/Family Home Evening for Singles 31+ May 2022" />
-        <p>May 2022</p>
+      <section id="contact" class="w-full py-8 bg-yellow-200">
+        <div class="container mx-auto px-4">
+          <h3 class="font-bold text-3xl text-center py-8 text-black text-center">Contact Me</h3>
+          <form
+            action="https://formspree.io/f/xpzneork"
+            method="POST"
+            class="w-full max-w-lg bg-white rounded-lg shadow-sm p-4 mx-auto flex flex-col items-start justify-start space-y-4 md:text-lg"
+          >
+            <label class="flex flex-col items-start justify-start w-full font-marhey">
+              Your Name:
+              <input
+                type="text"
+                name="name"
+                class="border w-full mt-1 font-sans p-2 rounded"
+                required
+              >
+            </label>
+
+            <label class="flex flex-col items-start justify-start w-full font-marhey">
+              Your Email:
+              <input
+                type="email"
+                name="email"
+                class="border w-full mt-1 font-sans p-2 rounded"
+                required
+              >
+            </label>
+
+            <label class="flex flex-col items-start justify-start w-full font-marhey">
+              Your Message:
+              <textarea
+                name="message"
+                class="border w-full mt-1 font-sans p-2 rounded"
+                required
+              ></textarea>
+            </label>
+
+            <button
+              type="submit"
+              class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded mx-auto"
+            >Send</button>
+          </form>
         </div>
-        <div class="flex flex-col items-center justify-center">
-        <img src="./static/images/game-night-apr-11-2022.JPG" alt="Game Night/Family Home Evening for Singles 31+ Apr 2022 AKA Casual Game Night the Sequel" />
-        <p>April 2022</p>
-        </div>
-        <div class="flex flex-col items-center justify-center">
-        <img src="./static/images/game-night-march-2022.jpeg"
-        alt="Game Night/Family Home Evening for Singles 31+ March 2022" />
-        <p>March 2022</p>
-        </div>
+      </section>
+
+      <div class="w-full bg-gray-100 py-24 px-4">
+        <section id="past-events" class="flex flex-col items-center justify-center container mx-auto space-y-16">
+          <h3 class="font-bold text-3xl text-center py-8 text-orange-600">Past Events</h3>
+          <img src="./static/images/FHEGame-Night-nov-2022.png" alt="Game Night/Family Home Evening for Singles 31+ Nov 2022" />
+          <img src="./static/images/oct-2022-game-night.png" alt="Game Night/Family Home Evening for Singles 31+ Oct 2022" />
+          <img src="./static/images/sept-game-night.png" alt="Game Night/Family Home Evening for Singles 31+ Sept 2022" />
+          <img src="./static/images/FHE-Game-Night-VI-Aug-2022.png" alt="Game Night/Family Home Evening for Singles 31+ Aug 2022" />
+          <img src="./static/images/game-night-july-2022.png" alt="Game Night/Family Home Evening for Singles 31+ July 2022" />
+          <img src="./static/images/Game-Night-june-2022.png"
+        alt="Game Night/Family Home Evening for Singles 31+ Jun 2022" />
+          <div class="flex flex-col items-center justify-center">
+            <img src="./static/images/game-night-may-2022.png" alt="Game Night/Family Home Evening for Singles 31+ May 2022" />
+            <p>May 2022</p>
+          </div>
+          <div class="flex flex-col items-center justify-center">
+            <img src="./static/images/game-night-apr-11-2022.JPG" alt="Game Night/Family Home Evening for Singles 31+ Apr 2022 AKA Casual Game Night the Sequel" />
+            <p>April 2022</p>
+          </div>
+          <div class="flex flex-col items-center justify-center">
+            <img src="./static/images/game-night-march-2022.jpeg"
+              alt="Game Night/Family Home Evening for Singles 31+ March 2022" />
+            <p>March 2022</p>
+          </div>
         </section>
-        </div>
+      </div>
     </main>
 
     <footer class="bg-black py-10 text-center text-white font-semibold w-full">
@@ -186,9 +235,6 @@
       </nav>
       <p class="text-tongue-pink">Copyright <span id="current-year">2022</span> Heather Nuffer</p>
     </footer>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
     <script>
     // Add smooth scroll to anchor links
