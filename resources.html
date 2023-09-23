@@ -70,7 +70,7 @@
       </nav>
     </header>
 
-    <main class="w-full mx-auto min-h-screen pt-48 md:pt-72 flex flex-col items-center justify-start">
+    <main class="w-full mx-auto min-h-screen pt-48 md:pt-72 flex flex-col items-center justify-start" id="top">
       <h3 class="font-marhey font-semibold text-lg md:text-3xl">Interested in hosting a game night?</h3>
       <section id="games" class="flex flex-col items-center justify-center py-8 space-y-3">
         <h4 class="font-marhey text-base md:text-2xl font-bold">Will it be a remote event?</h4>
@@ -216,6 +216,12 @@
           </div>
 
           <div class="p-2 flex flex-col items-center justify-center space-y-2 w-full">
+            <p class="font-marhey font-medium text-center">For 9/11:</p>
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4vpuLlxZABPtYnKHEvkYgE?utm_source=generator&theme=0" 
+            width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          </div>
+
+          <div class="p-2 flex flex-col items-center justify-center space-y-2 w-full">
             <p class="font-marhey font-medium text-center text-sm">For National Book Month (Oct.) or another book-themed event:</p>
             <iframe style="border-radius:12px"
               src="https://open.spotify.com/embed/playlist/741ZwmAkdHUWsMkrJWOzCH?utm_source=generator&theme=0" width="100%" height="80"
@@ -270,9 +276,45 @@
           >Send me your playlists!</a>
       </section>
 
-      <section id="messages" class="flex flex-col items-center justify-center py-8 space-y-3 md:pt-24 md:pb-48 bg-gray-100 w-full">
+      <section id="messages" class="flex flex-col items-center justify-center py-8 space-y-6 md:pt-24 md:pb-48 bg-gray-100 w-full">
         <h4 class="font-marhey text-base md:text-2xl font-bold">Ideas for the Spiritual Thought/Message</h4>
         <p class="italic text-xs md:text-sm">(Notes about what we've done in the past)</p>
+
+        <div class="flex flex-col items-start justify-start w-full max-w-md sm:max-w-2xl space-y-4 bg-white p-6 rounded-md shadow text-sm md:text-base">
+          <h5 class="text-center font-marhey text-sm md:text-xl font-bold self-center">Sept 2023</h5>
+          <p class="text-center px-4 leading-loose">
+            A quote from the <a href="https://tabithasway.org/" target="_blank" class="text-purple-600 font-bold hover:text-purple-500">Tabitha's Way</a>  website: <br />
+            "If you feel blessed or prosperous, help build a longer table...not a higher fence." <span class="italic">- Anonymous</span>
+          </p>
+
+          <img src="./static/images/long-table.jpg" alt="long table" class="mx-auto w-2/3 rounded shadow lg:w-1/2"/>
+
+          <p class="text-lg font-bold">From Standing Tall, by Bishop H. David Burton</p>
+          <p class="leading-relaxed">A man of wisdom often offered this simple piece of advice: “David, stand tall.” My dad did not expect that I would add inches to my stature or rise up on my tiptoes. 
+            He meant that I should be courageous in my decision, not compromising principles, not violating spiritual values, and not shrinking from responsibility. 
+            When I have followed his advice, life has been very good. When I have failed to stand tall, life has usually been unpleasant. 
+            I recently asked my two young grandsons what it would mean to them if Heavenly Father asked them to stand tall. 
+            I noticed one inadvertently raised himself to his tippy-toes so as to seem a little taller. And then they quickly said in unison, “He wants us to do what is right.”
+          </p>
+          <p class="leading-relaxed">
+            <span class="text-blue-800 font-bold">Out of the deep anguish and turmoil of September 11th have come many instances of men, women, and nations standing tall.</span> 
+            Foes and friends have come together against a common enemy. Uncommon acts of bravery have become commonplace. 
+            Humanitarian response seems to know no bounds. Men and women, regardless of race or creed, have reached out to victims and their families. 
+            Countless prayers have been offered. The forces for good are standing tall against the forces of terror and senseless mayhem.
+          </p>
+
+          <p class="leading-relaxed">The life, ministry, and teachings of our Savior, Jesus Christ, provide a template for introspective assessment. 
+            <span class="text-blue-800 font-bold">Jesus Christ is our perfect example of one who always stood tall.</span> He is the one who personifies integrity, strength, and courage.
+          </p>
+
+          <img src="./static/images/jesus-christ.jpeg" alt="Jesus Christ" class="mx-auto w-2/3 rounded shadow lg:w-1/2" />
+
+          <p class="self-center font-bold text-lg">Stair Climb</p>
+          <p>We had a symbolic stair climb, going up and down the steps outside the building a few times. However, we admire the people who do official <a href="https://www.firehero.org/events/9-11-stair-climbs/" target="_blank">9/11 Memorial Stair Climbs</a>.
+            <br> They climb or walk the equivalent of the 110 stories of the World Trade Center. "Through firefighter and community participation we ensure that each of the 343 firefighters is honored and that the world knows that we will never forget."
+          </p>
+          <img src="./static/images/stair-climb.jpeg" alt="9/11 Memorial Stair Climb logo" class="mx-auto w-1/2 lg:w-1/3"/>
+        </div>
 
         <div>
           <h5 class="text-center font-marhey text-sm md:text-xl font-bold">August 2023</h5>
@@ -355,6 +397,7 @@
           </a>
         </div>
       </section>
+      <a href="#top" class="py-4 text-center text-sm md:text-xl font-bold text-blue-700 hover:text-blue-800 smooth-scroll">Back to Top</a>
     </main>
 
     <footer class="bg-gradient-to-b from-black to-gray-700 py-10 text-center text-white font-semibold w-full">
