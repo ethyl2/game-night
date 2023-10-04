@@ -96,16 +96,15 @@
         <h3 class="font-bold text-3xl text-center pb-4 md:pt-8 ">The Next One!</h3>
         <p class="pb-4 text-yellow-400 text-lg md:text-2xl">Monday, Nov. 20, 2023</p>
         <p class="pb-4 text-white text-lg md:text-2xl">NOTE: <span class="underline">Not</span> the normal 1st Monday!</p>
-        <img src="./static/images/worth-the-wait.png" alt="Some things are worth the wait." class="my-4 rounded-lg"/>
-        <p class="pb-4 text-yellow-400 text-lg md:text-2xl">7-9 pm</p>
-        <p class="pb-4 text-yellow-400 text-lg md:text-2xl">Lindon Stake Center</p>
-        <p class="pb-4 text-yellow-400 text-lg md:text-2xl">1050 E 100 N, Lindon</p>
-        <p class="text-white text-xl md:text-2xl">More details to come!</p>
+        
+        <img src="./static/images/nov-2023-game-night-fhe.png" alt="November 2023 Game Night/FHE" class="px-4 w-full md:w-1/2 lg:w-1/3 my-4 rounded-lg md:px-0" />
 
         <iframe 
           src="https://calendar.google.com/calendar/embed?src=264be5ee145363c870faeaf140db883ad7f1a9c9e42c3d15b6d26978a0af825a%40group.calendar.google.com&ctz=America%2FDenver" 
           class="mt-4 w-full h-96 md:w-2/3 lg:w-1/2 xl:w-1/3 mx-auto border-4 border-yellow-400 rounded shadow-lg bg-white p-2 md:p-4"
         ></iframe>
+
+        <img src="./static/images/worth-the-wait.png" alt="Some things are worth the wait." class="my-4 rounded-lg w-64"/>
       </section>
 
       <section id="invitation" class="py-8 md:py-16 px-4 flex flex-col items-center justify-center space-y-2 bg-yellow-100 w-full">
@@ -120,24 +119,29 @@
       </section>
 
       <section id="map" class="overflow-x-auto flex flex-col items-center justify-center pb-8 md:pt-16 md:pb-24">
-        <h3 class="font-bold text-3xl text-center pt-8 pb-4 text-green-600">Map</h3>
-        <p class="p-4 text-sm md:text-base text-center">Enter the south doors for quickest access to the Relief Society room.</p>
-        <div class="md:hidden">
-          <!-- MOBILE MAP -->
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.1071011779986!2d-111.69369328420719!3d40.33997007937409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d850cea441f1f%3A0x9e55e0f29a813774!2s1050%20E%20100%20N%20St%2C%20Lindon%2C%20UT%2084042!5e0!3m2!1sen!2sus!4v1669354596186!5m2!1sen!2sus"
-            width="300" height="350" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
+        <h3 class="font-bold text-3xl text-center pt-8 pb-4 text-green-600 md:text-5xl">Map</h3>
+        <p class="p-4 text-sm md:text-base text-center lg:text-lg">Enter the south doors for quickest access to the Relief Society room.</p>
 
-          <!-- DESKTOP MAP -->
-          <div class="hidden invisible md:visible md:block">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.1071011779986!2d-111.69369328420719!3d40.33997007937409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d850cea441f1f%3A0x9e55e0f29a813774!2s1050%20E%20100%20N%20St%2C%20Lindon%2C%20UT%2084042!5e0!3m2!1sen!2sus!4v1669354596186!5m2!1sen!2sus"
-              width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
+        <iframe 
+          title="Lindon Game Night/FHE Location"
+          class="sm:hidden border-8 border-green-200 rounded shadow-lg"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.1071011779986!2d-111.69369328420719!3d40.33997007937409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d850cea441f1f%3A0x9e55e0f29a813774!2s1050%20E%20100%20N%20St%2C%20Lindon%2C%20UT%2084042!5e0!3m2!1sen!2sus!4v1669354596186!5m2!1sen!2sus" 
+          width="350" height="300" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        
+        <iframe 
+            title="Lindon Game Night/FHE Location"
+            class="hidden sm:block md:hidden border-8 border-green-200 rounded shadow-lg"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.1071011779986!2d-111.69369328420719!3d40.33997007937409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d850cea441f1f%3A0x9e55e0f29a813774!2s1050%20E%20100%20N%20St%2C%20Lindon%2C%20UT%2084042!5e0!3m2!1sen!2sus!4v1669354596186!5m2!1sen!2sus" 
+            width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    
+        <iframe
+            title="Lindon Game Night/FHE Location" 
+            class="hidden md:block border-8 border-green-200 rounded shadow-lg" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3041.1071011779986!2d-111.69369328420719!3d40.33997007937409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d850cea441f1f%3A0x9e55e0f29a813774!2s1050%20E%20100%20N%20St%2C%20Lindon%2C%20UT%2084042!5e0!3m2!1sen!2sus!4v1669354596186!5m2!1sen!2sus" 
+            width="800" height="600" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </section>
 
       <section id="contact" class="w-full py-8 bg-gradient-to-b from-yellow-300 to-yellow-200">
@@ -510,7 +514,27 @@
               <p>Bring a treat to share, and a game to play if you'd like.</p>
               <p>Off-street parking is available.</p>
               <p>For more information, contact Jesse at <a href="tel:801-787-0353" class="hover:text-purple-600 hover:underline">801-787-0353</a>.</p>
-              <iframe class="pb-2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3043.6699076747027!2d-111.7009951239956!3d40.283082271461375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d9ae9231e34a1%3A0x6ba6de78a5fbb9f5!2s136%20W%20800%20S%2C%20Orem%2C%20UT%2084058!5e0!3m2!1sen!2sus!4v1695437060081!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
+             
+              <iframe 
+                title="Orem Game Night Location"
+                class="sm:hidden border-8 border-orange-200 rounded shadow-lg"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3043.6699076747027!2d-111.7009951239956!3d40.283082271461375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d9ae9231e34a1%3A0x6ba6de78a5fbb9f5!2s136%20W%20800%20S%2C%20Orem%2C%20UT%2084058!5e0!3m2!1sen!2sus!4v1695437060081!5m2!1sen!2sus" 
+                width="350" height="300" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+              
+              <iframe 
+                  title="Orem Game Night Location"
+                  class="hidden sm:block md:hidden border-8 border-orange-200 rounded shadow-lg"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3043.6699076747027!2d-111.7009951239956!3d40.283082271461375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d9ae9231e34a1%3A0x6ba6de78a5fbb9f5!2s136%20W%20800%20S%2C%20Orem%2C%20UT%2084058!5e0!3m2!1sen!2sus!4v1695437060081!5m2!1sen!2sus" 
+                  width="600" height="450" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+          
+              <iframe
+                  title="Orem Game Night Location" 
+                  class="hidden md:block border-8 border-orange-200 rounded shadow-lg" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3043.6699076747027!2d-111.7009951239956!3d40.283082271461375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d9ae9231e34a1%3A0x6ba6de78a5fbb9f5!2s136%20W%20800%20S%2C%20Orem%2C%20UT%2084058!5e0!3m2!1sen!2sus!4v1695437060081!5m2!1sen!2sus" 
+                  width="800" height="600" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
           </div> <!-- End other game nights -->
       </div> <!-- End links section -->
