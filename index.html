@@ -57,10 +57,11 @@
       <nav class="flex items-center justify-around space-x-4 md:space-x-12 mt-4 bg-gradient-to-b from-gray-500 to-gray-400  w-full pt-2 pb-1 px-4">
         <a href="#about" class="smooth-scroll text-xs sm:text-sm lg:text-base xl:text-lg  hover:text-yellow-200">About</a>
         <a href="#upcoming" class="smooth-scroll text-xs sm:text-sm lg:text-base xl:text-lg  hover:text-yellow-200">Next Event</a>
+        <a href="#email" class="smooth-scroll text-xs sm:text-sm lg:text-base xl:text-lg  hover:text-yellow-200">Email</a>
         <a href="#invitation" class="hidden md:inline smooth-scroll text-xs sm:text-sm lg:text-base xl:text-lg  hover:text-yellow-200">Invitations</a>
         <a href="#map" class="smooth-scroll text-xs sm:text-sm lg:text-base xl:text-lg  hover:text-yellow-200">Map</a>
         <a href="#contact" class="smooth-scroll text-xs sm:text-sm lg:text-base xl:text-lg  hover:text-yellow-200">Contact</a>
-        <a href="#past-events" class="smooth-scroll text-center text-xs sm:text-sm lg:text-base xl:text-lg hover:text-yellow-200">
+        <a href="#past-events" class="hidden sm:inline smooth-scroll text-center text-xs sm:text-sm lg:text-base xl:text-lg hover:text-yellow-200">
           <span class="hidden xl:inline text-center">Photo Gallery & </span>Past Events</a>
         <a href="#links" class="hidden sm:inline smooth-scroll text-xs sm:text-sm lg:text-base xl:text-lg  hover:text-yellow-200">Other Groups</a>
         <a href="./resources.html" class="hidden md:inline text-xs sm:text-sm lg:text-base xl:text-lg  hover:text-yellow-200">Resources</a>
@@ -105,6 +106,17 @@
         ></iframe>
 
         <img src="./static/images/worth-the-wait.png" alt="Some things are worth the wait." class="my-4 rounded-lg w-64"/>
+      </section>
+
+      <section id="email" class="py-8 md:py-16 px-4 flex flex-col items-center justify-center bg-gradient-to-b from-yellow-300 to-yellow-200 w-full">
+          <a class="bg-white p-3 sm:p-4 rounded-lg shadow flex flex-col items-center justify-center space-y-2 md:space-y-3 group hover:bg-gray-100 md:p-6"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSeUm-S2Sc4XmTZqxtBDxbxg0mOIVV6FeOnPeBS4thx9L_piwA/viewform?usp=sf_link"
+          target="_blank" rel="noopener nofollow noreferrer">
+        <h3 class="font-bold text-xl md:text-3xl text-center text-black">Sign up for the Email List!</h3>
+        <p class="text-5xl">📧</p>
+        <div class="bg-blue-500 group-hover:bg-blue-400 rounded-lg px-4 py-2 text-white text-lg font-bold shadow"
+        >Sign Up Here</div>
+      </a>
       </section>
 
       <section id="invitation" class="py-8 md:py-16 px-4 flex flex-col items-center justify-center space-y-2 bg-yellow-100 w-full">
@@ -541,6 +553,20 @@
     </main>
 
     <footer class="bg-gradient-to-b from-black to-gray-700 py-10 text-center text-white font-semibold w-full">
+      <!-- Internal navigation -->
+      <nav class="flex flex-col items-start justify-start space-y-2 w-full container px-4">
+        <a href="#about" class="smooth-scroll text-xs sm:text-sm hover:text-yellow-200">About</a>
+        <a href="#upcoming" class="smooth-scroll text-xs sm:text-sm hover:text-yellow-200">Next Event</a>
+        <a href="#email" class="smooth-scroll text-xs sm:text-sm hover:text-yellow-200">Email</a>
+        <a href="#invitation" class="smooth-scroll text-xs sm:text-sm hover:text-yellow-200">Invitations</a>
+        <a href="#map" class="smooth-scroll text-xs sm:text-sm hover:text-yellow-200">Map</a>
+        <a href="#contact" class="smooth-scroll text-xs sm:text-sm hover:text-yellow-200">Contact</a>
+        <a href="#past-events" class="smooth-scroll text-center text-xs sm:text-sm hover:text-yellow-200">Photo Gallery & Past Events</a>
+        <a href="#links" class="smooth-scroll text-xs sm:text-sm hover:text-yellow-200">Other Groups</a>
+        <a href="./resources.html" class="text-xs sm:text-sm hover:text-yellow-200">Resources</a>
+      </nav>
+
+      <!-- External Links -->
       <nav class="pt-2 flex items-center justify-center mb-4">
         <a href="https://github.com/ethyl2" target="_blank" rel="noopener noreferrer"
           class="p-1 rounded hover:bg-orange-400">
@@ -599,7 +625,6 @@
           </div>
         </a>
       </nav>
-      <a href="./resources.html" class="text-xs text-white hover:text-orange-400 md:hidden">Resources</a>
       <p class="text-xs font-kalam">Copyright <span id="current-year">2022</span> Heather Nuffer</p>
     </footer>
     <script>
