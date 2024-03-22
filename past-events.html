@@ -72,7 +72,8 @@
         <h2 class="font-marhey font-semibold text-lg md:text-3xl pb-8">Flyers from Past Events</h2>
 
         <div class="flex flex-col md:flex-row md:items-stretch justify-center container mx-auto space-y-6 md:space-y-0 md:space-x-6 w-full pb-12 px-4 md:px-0">
-          <img src="./static/images/march-2024-fhe-game-night.png" alt="Singles 31+ Game Night/FHE Feb 2024" class="rounded shadow-lg w-full sm:w-1/2 md:w-1/3" />
+          <img src="./static/images/mar-18-2024-game-night-fhe.png" alt="Singles 31+ Game Night/FHE Mar 18 2024" class="rounded shadow-lg w-full sm:w-1/2 md:w-1/3" />
+          <img src="./static/images/march-2024-fhe-game-night.png" alt="Singles 31+ Game Night/FHE Mar 2024" class="rounded shadow-lg w-full sm:w-1/2 md:w-1/3" />
         </div>
        
         <div class="flex flex-col md:flex-row md:items-stretch justify-center container mx-auto space-y-6 md:space-y-0 md:space-x-6 w-full pb-12 px-4 md:px-0">
@@ -90,13 +91,15 @@
           <img src="./static/images/fhe-game-night-sept-2023.png" alt="Singles 31+ Game Night/FHE Sept 2023" class="rounded shadow-lg w-full sm:w-1/2 md:w-1/3" />
         </div>
 
-        <section class="flex flex-col container mx-auto space-y-4">
+        <button type="button" id="show-more-flyers" class="bg-yellow-200 text-black font-semibold py-2 px-4 rounded mb-4 hover:bg-yellow-300">Show More Flyers</button>
+
+        <section id="more-flyers" class="container flex flex-col w-full mx-auto space-y-4 bg-yellow-50 hidden py-4">
             <div class="flex flex-col md:flex-row md:items-stretch justify-center container mx-auto space-y-6 md:space-y-0 md:space-x-6 w-full pb-12 px-4 md:px-0">
                 <img src="./static/images/game-night-fhe-aug-2023.png" alt="Singles 31+ Game Night/FHE Aug 2023" class="rounded shadow-lg w-full sm:w-1/2 md:w-1/3" />
                 <img src="./static/images/July2023FHEGameNight.png" alt="Singles 31+ Game Night/FHE July 2023" class="rounded shadow-lg w-full sm:w-1/2 md:w-1/3" />
             </div>
-            <div class="flex flex-col md:flex-row w-full space-y-6 md:space-y-0 md:space-x-6">
-                <div class="w-full mx-auto max-w-xl shadow rounded flex items-center justify-center">
+            <div class="flex flex-col md:flex-row w-full space-y-6 px-4 md:space-y-0 md:space-x-6">
+                <div class="w-full mx-auto max-w-md shadow rounded flex items-center justify-center">
                 <img src="./static/images/FHE-Game-Night-Jun-2023.png" alt="Singles 31+ Game Night/FHE June 2023" class="w-full max-w-3xl rounded shadow-lg" />
                 </div>
                 <div class="w-full mx-auto max-w-xl rounded flex items-center justify-center">
@@ -107,16 +110,12 @@
                 </div>
             </div>
 
-            <div class="flex flex-col md:flex-row w-full space-y-6 md:space-y-0 md:space-x-6">
-                <div class="w-full mx-auto max-w-xl shadow rounded flex items-center justify-center">
-                <img src="./static/images/fhe-game-night-feb-2023.png" alt="Singles 31+ Game Night/FHE Feb 2023" class="w-full max-w-4xl rounded shadow-lg" />
-                </div>
-                <div class="w-full mx-auto max-w-xl shadow rounded flex items-center justify-center">
-                <img src="./static/images/fhe-game-night-jan-2023.png" alt="January 2023 Game Night" class="w-full max-w-4xl rounded shadow-lg" />
-                </div>
+            <div class="flex flex-col md:flex-row md:items-stretch justify-center container mx-auto space-y-6 md:space-y-0 md:space-x-6 w-full pb-12 px-4 md:px-0">
+              <img src="./static/images/fhe-game-night-feb-2023.png" alt="Singles 31+ Game Night/FHE Feb 2023" class="rounded shadow-lg w-full sm:w-1/2 md:w-1/3" />
+              <img src="./static/images/fhe-game-night-jan-2023.png" alt="Singles 31+ Game Night/FHE Jan 2023" class="rounded shadow-lg w-full sm:w-1/2 md:w-1/3" />
             </div>
 
-            <div class="flex flex-col md:flex-row w-full space-y-6 md:space-y-0 md:space-x-6">
+            <div class="flex flex-col md:flex-row w-full space-y-6 px-4 md:space-y-0 md:space-x-6">
                 <div class="w-full mx-auto max-w-4xl shadow rounded">
                 <img src="./static/images/fhe-game-night-dec-2022.png" alt="Game Night/Family Home Evening for Singles 31+ Dec 2022"
                     class="rounded" />
@@ -127,26 +126,26 @@
             </div>
 
             <div class="w-full mx-auto max-w-4xl shadow rounded">
-                <img src="./static/images/oct-2022-game-night.png" alt="Game Night/Family Home Evening for Singles 31+ Oct 2022" />
+                <img src="./static/images/oct-2022-game-night.png" alt="Game Night/Family Home Evening for Singles 31+ Oct 2022" class="px-4 md:px-0"/>
             </div>
 
             <div class="flex flex-col md:flex-row w-full space-y-6 md:space-y-0 md:space-x-6 items-center justify-center">
-                <img src="./static/images/sept-game-night.png" alt="Game Night/Family Home Evening for Singles 31+ Sept 2022" />
-                <img src="./static/images/FHE-Game-Night-VI-Aug-2022.png" alt="Game Night/Family Home Evening for Singles 31+ Aug 2022" />
+                <img src="./static/images/sept-game-night.png" alt="Game Night/Family Home Evening for Singles 31+ Sept 2022" class="px-4 md:px-0" />
+                <img src="./static/images/FHE-Game-Night-VI-Aug-2022.png" alt="Game Night/Family Home Evening for Singles 31+ Aug 2022" class="px-4 md:px-0"/>
             </div>
 
             <div class="flex flex-col md:flex-row w-full space-y-6 md:space-y-0 md:space-x-6 items-center justify-center">
-                <img src="./static/images/game-night-july-2022.png" alt="Game Night/Family Home Evening for Singles 31+ July 2022" />
-                <img src="./static/images/Game-Night-june-2022.png"
+                <img src="./static/images/game-night-july-2022.png" alt="Game Night/Family Home Evening for Singles 31+ July 2022" class="px-4 md:px-0"/>
+                <img src="./static/images/Game-Night-june-2022.png" class="px-4 md:px-0"
                 alt="Game Night/Family Home Evening for Singles 31+ Jun 2022" />
             </div>
 
             <div class="flex flex-col md:flex-row w-full space-y-6 md:space-y-0 md:space-x-6 items-center justify-center">
                 <div class="flex flex-col items-center justify-center">
-                    <img src="./static/images/game-night-may-2022.png" alt="Game Night/Family Home Evening for Singles 31+ May 2022" />
+                    <img src="./static/images/game-night-may-2022.png" alt="Game Night/Family Home Evening for Singles 31+ May 2022" class="max-w-xs"/>
                     <p>May 2022</p>
                 </div>
-                <div class="flex flex-col items-center justify-center">
+                <div class="flex flex-col items-center justify-center px-4 md:px-0">
                     <img src="./static/images/game-night-apr-11-2022.JPG" alt="Game Night/Family Home Evening for Singles 31+ Apr 2022 AKA Casual Game Night the Sequel" />
                     <p>April 2022</p>
                 </div>
@@ -158,22 +157,14 @@
             </div>
         </section>
 
-        <div class="flex flex-col items-center justify-center pt-12 border-t w-full mt-12 space-y-4 pb-24">
-          <h3 class="text-3xl font-bold">Refer Your Friends</h3>
-          <a href="https://bestcompany.com/s/XPoehI" target="_blank" rel="noopener noreferrer" class="font-bold text-lg text-blue-800 hover:text-blue-900">Here!</a>
-        
-          <p>or scan this:</p>
+        <div class="flex flex-col items-center justify-center w-full mt-12 space-y-4 pb-24">
+          <iframe src="https://components.bestcompany.com/vn9yk7w8BN/horizontal-referral-widget/9b8c4bfd-380c-44ce-a976-9cff297c7b64" height="230" width="100%" style="display:block; border: none; position: relative; overflow: hidden;"></iframe>
+          <h3 class="text-3xl font-bold">Refer Your Friends <a href="https://bestcompany.com/s/XPoehI" target="_blank" rel="noopener noreferrer" class="font-bold text-blue-800 hover:text-blue-900 hover:bg-white">Here!</a></h3>
 
           <img src="./static/images/new-qr-code.png" alt="QR code for the referral form" class="w-48" />
 
-          <p>or</p>
-
-          <iframe src="https://components.bestcompany.com/vn9yk7w8BN/horizontal-referral-widget/9b8c4bfd-380c-44ce-a976-9cff297c7b64" height="230" width="100%" style="display:block; border: none; position: relative; overflow: hidden;"></iframe>
-
-          <p>or fill this out:</p>
-          <iframe src="https://components.bestcompany.com/vn9yk7w8BN/embedded-referral-form/9b8c4c42-1463-4f6f-8c3f-ad72592b6a58" 
-          height="560" width="100%" style="display:block; border: none; position: relative; overflow: hidden;"></iframe>
-
+          <p class="md:text-lg md:font-bold">Or fill this out:</p>
+          <iframe src="https://components.bestcompany.com/vn9yk7w8BN/embedded-referral-form/9b981e80-53bc-4b9e-9380-0d0aa8879541" height="560" width="420" style="display:block; border: none; position: relative; overflow: hidden;"></iframe>
         </div>
       </main>
 
@@ -269,6 +260,14 @@
 
       const currentYearSpan = document.getElementById('current-year')
       currentYearSpan.textContent = new Date().getFullYear()
+
+      const showMoreFlyersButton = document.getElementById('show-more-flyers')
+      const moreFlyersSection = document.getElementById('more-flyers')
+      showMoreFlyersButton.addEventListener('click', () => {
+        moreFlyersSection.classList.toggle('hidden')
+        showMoreFlyersButton.textContent = moreFlyersSection.classList.contains('hidden') ? 'Show More Flyers' : 'Show Fewer Flyers'
+        }
+      )
     </script>
   </body>
 </html>
