@@ -2,45 +2,43 @@
     let placement = null
   
     fetchCompanyData(function (fetchedPlacement) {
-      placement = fetchedPlacement
-      const body = document.querySelector('body')
-      const container = buildContainer()
-      const innerWrapper = buildInnerWrapper()
+        placement = fetchedPlacement
+        const body = document.querySelector('body')
+        const container = buildContainer()
+        const innerWrapper = buildInnerWrapper()
+        const header = buildHeader()
+        const logo = buildLogo()
+        const referralParagraph = buildParagraphWithSpan(placement, 'referral')
+        const saleParagraph = buildParagraphWithSpan(placement, 'sale')
 
-      if (placement.referral_payout_tooltip) {
-        const referralPayoutTooltip = buildReferralPayoutTooltip(placement)
-        innerWrapper.append(referralPayoutTooltip)
-      }
-      const header = buildHeader()
-      const logo = buildLogo()
-      
-      const referralParagraph = buildParagraphWithSpan(placement, 'referral')
+        if (placement.referral_payout_tooltip) {
+            const referralPayoutTooltip = buildPayoutTooltip(placement, 'referral')
+            referralParagraph.append(referralPayoutTooltip)
+        }
+
+        if (placement.sale_payout_tooltip) {
+            const salePayoutTooltip = buildPayoutTooltip(placement, 'sale')
+            saleParagraph.append(salePayoutTooltip)
+        }
      
-      const saleParagraph = buildParagraphWithSpan(placement, 'sale')
-      const payoutInfo = buildPayoutInfo(referralParagraph, saleParagraph)
-      const button = buildAnchorElement()
-      const headerWrapper = buildHeaderWrapper()
-      const closeButton = buildClose()
+        const payoutInfo = buildPayoutInfo(referralParagraph, saleParagraph)
+        const button = buildAnchorElement()
+        const headerWrapper = buildHeaderWrapper()
+        const closeButton = buildClose()
      
-      loadFont()
-      addStyles()
-      body.append(container)
-      container.append(innerWrapper)
-      innerWrapper.append(headerWrapper)
-      headerWrapper.append(logo)
-      headerWrapper.append(header)
-      
-      innerWrapper.append(payoutInfo)
-      innerWrapper.append(button)
-      innerWrapper.append(closeButton)
+        loadFont()
+        addStyles()
 
-      const referralPayoutTooltipButton = document.querySelector('#sb-referral-tooltip-button')
-      const referralPayoutTooltip = document.querySelector('#sb-referral-payout-tooltip')
-      addEventListeners(referralPayoutTooltipButton, referralPayoutTooltip)
+        body.append(container)
+        headerWrapper.append(logo, header)
+        innerWrapper.append(headerWrapper, payoutInfo, button, closeButton)
+        container.append(innerWrapper)
 
-      setTimeout(() => {
-        toggleVisibility()
-      }, 500) // 3500
+        addTooltipEvents(['referral', 'sale'])
+
+        setTimeout(() => {
+            toggleVisibility()
+        }, 500) // 3500
     })
   
     function buildContainer() {
@@ -72,36 +70,50 @@
     }
   
     function buildParagraphWithSpan(placement, type) {
-  
-      const paragraphElement = document.createElement('p')
-      paragraphElement.classList.add('sb-payout-info')
-
-      const spanElement = document.createElement('span')
-      spanElement.classList.add('sb-amount')
-      spanElement.textContent = `${placement[`${type}_payout`]}` 
-  
-      paragraphElement.appendChild(spanElement)
-  
-      paragraphElement.innerHTML += 'for each '
-
-      if (placement.referral_payout_tooltip && type === 'referral') {
-       const referralPayoutTooltipButton = document.createElement('button')
-       referralPayoutTooltipButton.classList.add('tooltip-button')
-       referralPayoutTooltipButton.textContent = 'qualified referral'
-       referralPayoutTooltipButton.id = 'sb-referral-tooltip-button'
-        paragraphElement.appendChild(referralPayoutTooltipButton)
-
-        const materialIconSpan = document.createElement('span')
-        materialIconSpan.classList.add('material-icons-outlined')
-        materialIconSpan.textContent = 'info'
-        materialIconSpan.setAttribute('aria-label', 'Info icon')
-        referralPayoutTooltipButton.appendChild(materialIconSpan)
-      } else {
-        paragraphElement.innerHTML += `qualified ${type}`
-      }
-  
-      return paragraphElement
+        const paragraphElement = document.createElement('p')
+        paragraphElement.classList.add('sb-payout-info')
+    
+        const spanElement = document.createElement('span')
+        spanElement.classList.add('sb-amount')
+        spanElement.textContent = placement[`${type}_payout`]
+        paragraphElement.appendChild(spanElement)
+    
+        const forEachSpan = document.createElement('span')
+        forEachSpan.textContent = 'for each '
+        forEachSpan.style.paddingBottom = '2px'
+        paragraphElement.appendChild(forEachSpan)
+    
+        const property = `${type}_payout_tooltip`
+        const qualifiedText = `qualified ${type}`
+    
+        if (['referral', 'sale'].includes(type)) {
+            if (placement[property]) {
+                const tooltipButton = document.createElement('button')
+                tooltipButton.classList.add('tooltip-button')
+                tooltipButton.id = `sb-${type}-tooltip-button`
+    
+                const buttonTextSpan = document.createElement('span')
+                buttonTextSpan.classList.add('tooltip-button-text')
+                buttonTextSpan.textContent = qualifiedText
+    
+                const iconSpan = document.createElement('span')
+                iconSpan.classList.add('material-icons-outlined')
+                iconSpan.textContent = 'info'
+                iconSpan.setAttribute('aria-label', 'Info icon')
+    
+                tooltipButton.append(buttonTextSpan, iconSpan)
+                paragraphElement.appendChild(tooltipButton)
+            } else {
+                const span = document.createElement('span')
+                span.textContent = qualifiedText
+                span.style.paddingBottom = '2px'
+                paragraphElement.appendChild(span)
+            }
+        }
+    
+        return paragraphElement
     }
+    
 
     function buildPayoutInfo(referralParagraph, saleParagraph) {
         const payoutInfo = document.createElement('div')
@@ -120,7 +132,7 @@
       const spanElement = document.createElement('span')
       spanElement.textContent = 'Join Referral Program'
   
-      anchorElement.appendChild(spanElement);
+      anchorElement.appendChild(spanElement)
   
       return anchorElement
     }
@@ -142,13 +154,13 @@
       return closeButton
     }
 
-    function buildReferralPayoutTooltip(placement) {
+    function buildPayoutTooltip(placement, type) {
         const tooltip = document.createElement('div')
         tooltip.classList.add('tooltip')
-        tooltip.id = 'sb-referral-payout-tooltip'
-        tooltip.textContent = placement.referral_payout_tooltip
+        tooltip.id = `sb-${type}-payout-tooltip`
+        const property = `${type}_payout_tooltip`
+        tooltip.textContent = placement[property]
         tooltip.setAttribute('role', 'tooltip')
-        tooltip.classList.add('tooltip')
         return tooltip
     }
   
@@ -180,7 +192,7 @@
           const data = JSON.parse(xhr.responseText)
           callback(data)
         }
-      };
+      }
       xhr.send(null)
       xhr.onerror = function () {
         console.error('Failed to fetch referral widget data.')
@@ -210,7 +222,7 @@
     function addEventListeners(triggerButton, targetElement) {
         triggerButton.addEventListener('mouseenter', () => {
             targetElement.style.display = 'block'
-            targetElement.style.opacity = '1'
+            targetElement.style.opacity = '0.9'
             targetElement.style.visibility = 'visible'
         })
         
@@ -220,15 +232,14 @@
             targetElement.style.visibility = 'hidden'
         })
         
-        // Mobile touch support
         triggerButton.addEventListener('touchstart', () => {
             targetElement.style.display = 'block'
-            targetElement.style.opacity = '1'
+            targetElement.style.opacity = '0.9'
             targetElement.style.visibility = 'visible'
         })
         
         triggerButton.addEventListener('touchend', () => {
-            setTimeout(() => { // Small delay to allow user to see the tooltip before hiding
+            setTimeout(() => { 
                 targetElement.style.display = 'none'
                 targetElement.style.opacity = '0'
                 targetElement.style.visibility = 'hidden'
@@ -254,6 +265,16 @@
       head.append(materialLinkTag)
       head.append(materialOutlinedLinkTag)
       head.append(latoLinkTag)
+    }
+
+    function addTooltipEvents(types) {
+        types.forEach(type => {
+            if (placement[`${type}_payout_tooltip`]) {
+                const button = document.querySelector(`#sb-${type}-tooltip-button`)
+                const tooltip = document.querySelector(`#sb-${type}-payout-tooltip`)
+                addEventListeners(button, tooltip)
+            }
+        })
     }
   
     function addStyles() {
@@ -364,6 +385,7 @@
         #sb-sticky-referral-widget .sb-amount {
             font-weight: bold;
             color: #18A571;
+            padding-bottom: 2px;
         }
     
         #sb-sticky-referral-widget #sb-sticky-referral-widget-wrapper h3 {
@@ -451,6 +473,14 @@
             opacity: 0;
             visibility: hidden;
             box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 200px;
+        }
+
+        .tooltip-button-text {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-style: dashed;
+            font-size: 15px;
         }
 
         .tooltip-button {
@@ -464,9 +494,14 @@
             justify-content: center;
             padding: 0;
             gap: 4px;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-            text-decoration-style: dashed;
+        }
+
+        .tooltip-button:hover {
+            color: #6BADFA;
+        }
+
+        .material-icons-outlined {
+            font-size: 16px;
         }
         `
       styleTag.textContent = materialCSSString
