@@ -13,7 +13,7 @@
       }
       const header = buildHeader()
       const logo = buildLogo()
-      const infoIcon = buildInfoIcon()
+      
       const referralParagraph = buildParagraphWithSpan(placement, 'referral')
      
       const saleParagraph = buildParagraphWithSpan(placement, 'sale')
@@ -34,17 +34,13 @@
       innerWrapper.append(button)
       innerWrapper.append(closeButton)
 
-      if (placement.referral_payout_tooltip) {
-        referralParagraph.append(infoIcon)
-      }
-
       const referralPayoutTooltipButton = document.querySelector('#sb-referral-tooltip-button')
       const referralPayoutTooltip = document.querySelector('#sb-referral-payout-tooltip')
       addEventListeners(referralPayoutTooltipButton, referralPayoutTooltip)
 
       setTimeout(() => {
         toggleVisibility()
-      }, 3500)
+      }, 500) // 3500
     })
   
     function buildContainer() {
@@ -94,6 +90,12 @@
        referralPayoutTooltipButton.textContent = 'qualified referral'
        referralPayoutTooltipButton.id = 'sb-referral-tooltip-button'
         paragraphElement.appendChild(referralPayoutTooltipButton)
+
+        const materialIconSpan = document.createElement('span')
+        materialIconSpan.classList.add('material-icons-outlined')
+        materialIconSpan.textContent = 'info'
+        materialIconSpan.setAttribute('aria-label', 'Info icon')
+        referralPayoutTooltipButton.appendChild(materialIconSpan)
       } else {
         paragraphElement.innerHTML += `qualified ${type}`
       }
@@ -145,36 +147,9 @@
         tooltip.classList.add('tooltip')
         tooltip.id = 'sb-referral-payout-tooltip'
         tooltip.textContent = placement.referral_payout_tooltip
-        Object.assign(tooltip.style, {
-            position: 'absolute',
-            backgroundColor: 'white',
-            color: 'black',
-            padding: '5px',
-            borderRadius: '4px',
-            zIndex: '9999',
-            display: 'none',
-            fontSize: '12px',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            pointerEvents: 'none',
-            transition: 'opacity 0.3s',
-            opacity: '0',
-            visibility: 'hidden',
-            width: '200px',
-            textAlign: 'center',
-            fontFamily: 'Arial, sans-serif',
-            lineHeight: '1.5',
-            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
-        })
+        tooltip.setAttribute('role', 'tooltip')
+        tooltip.classList.add('tooltip')
         return tooltip
-    }
-
-    function buildInfoIcon() {
-        const htmlText = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#4A90E2"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>`
-        const infoIconDiv = document.createElement('span')
-        infoIconDiv.innerHTML = htmlText
-        return infoIconDiv
     }
   
     function toggleVisibility() {
@@ -263,13 +238,21 @@
   
     function loadFont() {
       const materialLinkTag = document.createElement('link')
+      const materialOutlinedLinkTag = document.createElement('link')
       const latoLinkTag = document.createElement('link')
       const head = document.querySelector('head')
       materialLinkTag.rel = 'stylesheet'
       materialLinkTag.href = 'https://fonts.googleapis.com/icon?family=Material+Icons'
+      materialLinkTag.setAttribute('crossorigin', 'anonymous')
+      
+        materialOutlinedLinkTag.rel = 'stylesheet'
+        materialOutlinedLinkTag.href = 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined'
+        materialOutlinedLinkTag.setAttribute('crossorigin', 'anonymous')
+        latoLinkTag.setAttribute('crossorigin', 'anonymous')
       latoLinkTag.rel = 'stylesheet'
       latoLinkTag.href = 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap'
       head.append(materialLinkTag)
+      head.append(materialOutlinedLinkTag)
       head.append(latoLinkTag)
     }
   
@@ -449,7 +432,43 @@
             display: block; /* Ensure it's visible */
             width: 24px;
             height: 24px;
-        }`
+        }
+            
+        .tooltip {
+            display: none;
+            position: absolute;
+            background-color: white;
+            color: black;
+            padding: 5px;
+            border-radius: 4px;
+            z-index: 9999;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: opacity 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tooltip-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #4A90E2;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            gap: 4px;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-style: dashed;
+        }
+        `
       styleTag.textContent = materialCSSString
       head.append(styleTag)
     }
