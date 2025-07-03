@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cook Mode Example</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+    .active {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cook Mode</h1>
+  <p><strong>Toggle to prevent your screen from going dark while cooking.</strong></p>
+  <button id="cookModeBtn">Enable Cook Mode</button>
+
+  <script>
+    let wakeLock = null;
+    const button = document.getElementById('cookModeBtn');
+
+    async function requestWakeLock() {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock is active.');
+        button.textContent = 'Disable Cook Mode';
+        button.classList.add('active');
+
+        // Reapply wake lock if it’s released (e.g. screen changes)
+        wakeLock.addEventListener('release', () => {
+          console.log('Wake Lock was released.');
+          button.textContent = 'Enable Cook Mode';
+          button.classList.remove('active');
+        });
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
+    }
+
+    function releaseWakeLock() {
+      if (wakeLock !== null) {
+        wakeLock.release();
+        wakeLock = null;
+      }
+    }
+
+    button.addEventListener('click', () => {
+      if (wakeLock === null) {
+        requestWakeLock();
+      } else {
+        releaseWakeLock();
+        button.textContent = 'Enable Cook Mode';
+        button.classList.remove('active');
+      }
+    });
+
+    // Optional: handle page visibility changes (wake lock might get dropped)
+    document.addEventListener('visibilitychange', () => {
+      if (wakeLock !== null && document.visibilityState === 'visible') {
+        requestWakeLock();
+      }
+    });
+  </script>
+</body>
+</html>
