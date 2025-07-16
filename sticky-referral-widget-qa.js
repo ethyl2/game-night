@@ -2,31 +2,57 @@
     let placement = null
   
     fetchCompanyData(function (fetchedPlacement) {
-      placement = fetchedPlacement
-      const body = document.querySelector('body')
-      const container = buildContainer()
-      const innerWrapper = buildInnerWrapper()
-      const header = buildHeader()
-      const logo = buildLogo()
-      const referralParagraph = buildParagraphWithSpan(placement.referral_payout, ' for each qualified referral')
-      const saleParagraph = buildParagraphWithSpan(placement.sale_payout, ' if they become a new customer')
-      const payoutInfo = buildPayoutInfo(referralParagraph, saleParagraph)
-      const button = buildAnchorElement()
-      const headerWrapper = buildHeaderWrapper()
-      const closeButton = buildClose()
-      loadFont()
-      addStyles()
-      body.append(container)
-      container.append(innerWrapper)
-      innerWrapper.append(headerWrapper)
-      headerWrapper.append(logo)
-      headerWrapper.append(header)
-      innerWrapper.append(payoutInfo)
-      innerWrapper.append(button)
-      innerWrapper.append(closeButton)
-      setTimeout(() => {
-        toggleVisibility()
-      }, 3500)
+        placement = fetchedPlacement
+        console.log('Fetched placement data:', placement)
+        const body = document.querySelector('body')
+        const container = buildContainer()
+        const innerWrapper = buildInnerWrapper()
+        const header = buildHeader()
+        const logo = buildLogo()
+        let referralParagraph = null
+        let saleParagraph = null
+        if (placement.referral_payout_cents && placement.referral_payout_cents > 0) {
+           referralParagraph = buildParagraphWithSpan(placement, 'referral')
+        }
+        if (placement.sale_payout_cents && placement.sale_payout_cents > 0) {
+           saleParagraph = buildParagraphWithSpan(placement, 'sale')
+        }
+        if (placement.referral_payout_cents && placement.referral_payout_cents > 0 && placement.referral_payout_tooltip) {
+            const referralPayoutTooltip = buildPayoutTooltip(placement, 'referral')
+            if (referralParagraph) {
+                referralParagraph.append(referralPayoutTooltip)
+            }
+        }
+        if (placement.sale_payout_cents && placement.sale_payout_cents > 0 && placement.sale_payout_tooltip) {
+            const salePayoutTooltip = buildPayoutTooltip(placement, 'sale')
+            if (saleParagraph) {
+                saleParagraph.append(salePayoutTooltip)
+            }
+        }
+        let payoutInfo = null
+        if (referralParagraph || saleParagraph) {
+            payoutInfo = buildPayoutInfo(referralParagraph, saleParagraph)
+        }
+        const button = buildAnchorElement()
+        const headerWrapper = buildHeaderWrapper()
+        const closeButton = buildClose()
+     
+        loadFont()
+        addStyles()
+
+        body.append(container)
+        headerWrapper.append(logo, header)
+        
+        const elementsToAppend = [headerWrapper, payoutInfo, button, closeButton].filter(element => element !== null)
+        innerWrapper.append(...elementsToAppend)
+        
+        container.append(innerWrapper)
+
+        addTooltipEvents(['referral', 'sale'])
+
+        setTimeout(() => {
+            toggleVisibility()
+        }, 3500)
     })
   
     function buildContainer() {
@@ -57,40 +83,74 @@
       return wrapper
     }
   
-    function buildParagraphWithSpan(spanText, paragraphText) {
-  
-      const paragraphElement = document.createElement('p')
-      paragraphElement.classList.add('sb-payout-info')
-  
-      const spanElement = document.createElement('span')
-      spanElement.classList.add('sb-amount')
-      spanElement.textContent = spanText;
-  
-      paragraphElement.appendChild(spanElement)
-  
-      paragraphElement.innerHTML += paragraphText
-  
-      return paragraphElement
+    function buildParagraphWithSpan(placement, type) {
+        const paragraphElement = document.createElement('p')
+        paragraphElement.classList.add('sb-payout-info')
+    
+        const spanElement = document.createElement('span')
+        spanElement.classList.add('sb-amount')
+        spanElement.textContent = placement[`${type}_payout`]
+        paragraphElement.appendChild(spanElement)
+    
+        const forEachSpan = document.createElement('span')
+        forEachSpan.textContent = 'for each '
+        forEachSpan.style.paddingBottom = '2px'
+        paragraphElement.appendChild(forEachSpan)
+    
+        const property = `${type}_payout_tooltip`
+        const qualifiedText = `qualified ${type}`
+    
+        if (['referral', 'sale'].includes(type)) {
+            if (placement[property]) {
+                const tooltipButton = document.createElement('button')
+                tooltipButton.classList.add('tooltip-button')
+                tooltipButton.id = `sb-${type}-tooltip-button`
+    
+                const buttonTextSpan = document.createElement('span')
+                buttonTextSpan.classList.add('tooltip-button-text')
+                buttonTextSpan.textContent = qualifiedText
+    
+                const iconSpan = document.createElement('span')
+                iconSpan.classList.add('material-icons-outlined')
+                iconSpan.textContent = 'info'
+                iconSpan.setAttribute('aria-label', 'Info icon')
+    
+                tooltipButton.append(buttonTextSpan, iconSpan)
+                paragraphElement.appendChild(tooltipButton)
+            } else {
+                const span = document.createElement('span')
+                span.textContent = qualifiedText
+                span.style.paddingBottom = '2px'
+                paragraphElement.appendChild(span)
+            }
+        }
+    
+        return paragraphElement
     }
+    
 
     function buildPayoutInfo(referralParagraph, saleParagraph) {
         const payoutInfo = document.createElement('div')
         payoutInfo.id = 'sb-payout-info-container'
        
-        payoutInfo.appendChild(referralParagraph)
-        payoutInfo.appendChild(saleParagraph)
+        if (referralParagraph) {
+            payoutInfo.appendChild(referralParagraph)
+        }
+        if (saleParagraph) {
+            payoutInfo.appendChild(saleParagraph)
+        }
         return payoutInfo
     }
   
     function buildAnchorElement() {
   
       const anchorElement = document.createElement('a')
-      anchorElement.href = placement.url
+      anchorElement.href = placement.url || '#'
   
       const spanElement = document.createElement('span')
       spanElement.textContent = 'Join Referral Program'
   
-      anchorElement.appendChild(spanElement);
+      anchorElement.appendChild(spanElement)
   
       return anchorElement
     }
@@ -111,6 +171,16 @@
       })
       return closeButton
     }
+
+    function buildPayoutTooltip(placement, type) {
+        const tooltip = document.createElement('div')
+        tooltip.classList.add('tooltip')
+        tooltip.id = `sb-${type}-payout-tooltip`
+        const property = `${type}_payout_tooltip`
+        tooltip.textContent = placement[property]
+        tooltip.setAttribute('role', 'tooltip')
+        return tooltip
+    }
   
     function toggleVisibility() {
       const container = document.querySelector('#sb-sticky-referral-widget')
@@ -129,8 +199,20 @@
     }
   
     function fetchCompanyData(callback) {
-      const company = document.querySelector('#bc-sticky-referral-widget-script').dataset.company
-      const placement = document.querySelector('#bc-sticky-referral-widget-script').dataset.placement
+      const scriptElement = document.querySelector('#bc-sticky-referral-widget-script')
+      if (!scriptElement) {
+        console.error('Required script element with id "bc-sticky-referral-widget-script" not found.')
+        return
+      }
+      
+      const company = scriptElement.dataset.company
+      const placement = scriptElement.dataset.placement
+      
+      if (!company || !placement) {
+        console.error('Missing required data attributes: company and/or placement.')
+        return
+      }
+      
       const xhr = new XMLHttpRequest()
       xhr.open('GET', `https://components.bestcompany.com/api/${company}/sticky-referral-widget/${placement}`, true)
       xhr.onreadystatechange = function () {
@@ -138,7 +220,7 @@
           const data = JSON.parse(xhr.responseText)
           callback(data)
         }
-      };
+      }
       xhr.send(null)
       xhr.onerror = function () {
         console.error('Failed to fetch referral widget data.')
@@ -163,18 +245,66 @@
         `
         svgContainer.innerHTML = htmlText
         return svgContainer
-      }
+    }
+
+    function addEventListeners(triggerButton, targetElement) {
+        triggerButton.addEventListener('mouseenter', () => {
+            targetElement.style.display = 'block'
+            targetElement.style.opacity = '0.9'
+            targetElement.style.visibility = 'visible'
+        })
+        
+        triggerButton.addEventListener('mouseleave', () => {
+            targetElement.style.display = 'none'
+            targetElement.style.opacity = '0'
+            targetElement.style.visibility = 'hidden'
+        })
+        
+        triggerButton.addEventListener('touchstart', () => {
+            targetElement.style.display = 'block'
+            targetElement.style.opacity = '0.9'
+            targetElement.style.visibility = 'visible'
+        })
+        
+        triggerButton.addEventListener('touchend', () => {
+            setTimeout(() => { 
+                targetElement.style.display = 'none'
+                targetElement.style.opacity = '0'
+                targetElement.style.visibility = 'hidden'
+            }, 1500)
+        })
+    }
   
     function loadFont() {
       const materialLinkTag = document.createElement('link')
+      const materialOutlinedLinkTag = document.createElement('link')
       const latoLinkTag = document.createElement('link')
       const head = document.querySelector('head')
       materialLinkTag.rel = 'stylesheet'
       materialLinkTag.href = 'https://fonts.googleapis.com/icon?family=Material+Icons'
+      materialLinkTag.setAttribute('crossorigin', 'anonymous')
+      
+        materialOutlinedLinkTag.rel = 'stylesheet'
+        materialOutlinedLinkTag.href = 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined'
+        materialOutlinedLinkTag.setAttribute('crossorigin', 'anonymous')
+        latoLinkTag.setAttribute('crossorigin', 'anonymous')
       latoLinkTag.rel = 'stylesheet'
       latoLinkTag.href = 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap'
       head.append(materialLinkTag)
+      head.append(materialOutlinedLinkTag)
       head.append(latoLinkTag)
+    }
+
+    function addTooltipEvents(types) {
+        types.forEach(type => {
+            if (placement[`${type}_payout_tooltip`]) {
+                const button = document.querySelector(`#sb-${type}-tooltip-button`)
+                const tooltip = document.querySelector(`#sb-${type}-payout-tooltip`)
+                if (button && tooltip) {
+                    addEventListeners(button, tooltip)
+                }
+            }
+        })
     }
   
     function addStyles() {
@@ -276,11 +406,16 @@
         #sb-sticky-referral-widget .sb-payout-info {
             text-align: left;
             margin: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            justify-content: center;
         }
 
         #sb-sticky-referral-widget .sb-amount {
             font-weight: bold;
             color: #18A571;
+            padding-bottom: 2px;
         }
     
         #sb-sticky-referral-widget #sb-sticky-referral-widget-wrapper h3 {
@@ -343,7 +478,62 @@
                 max-width: 90% !important;
                 left: 5% !important;
             }
-        }`
+        }
+            
+        svg {
+            display: block; /* Ensure it's visible */
+            width: 24px;
+            height: 24px;
+        }
+            
+        .tooltip {
+            display: none;
+            position: absolute;
+            background-color: white;
+            color: black;
+            padding: 5px;
+            border-radius: 4px;
+            z-index: 9999;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: opacity 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 200px;
+        }
+
+        .tooltip-button-text {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-style: dashed;
+            font-size: 15px;
+        }
+
+        .tooltip-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #4A90E2;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            gap: 4px;
+        }
+
+        .tooltip-button:hover {
+            color: #6BADFA;
+        }
+
+        .material-icons-outlined {
+            font-size: 16px;
+        }
+        `
       styleTag.textContent = materialCSSString
       head.append(styleTag)
     }
